@@ -1,0 +1,139 @@
+:root{
+  --card: #2b2b2b;
+  --text: #fff;
+  --muted: #cfcfcf;
+  --accent: #9ea1a6;
+  --accent-strong: #ffffff;
+  --shadow: 0 10px 28px rgba(0,0,0,.35);
+  --radius-outer: 20px;
+  --radius-inner: 12px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--text);
+  font-family: system-ui, sans-serif;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+
+.bg{
+  position:fixed; inset:0;
+  background: linear-gradient(180deg,#c7ab8a,#9b7d5e);
+  filter: blur(12px);
+  transform: scale(1.05);
+  z-index:-1;
+}
+
+/* Kartu */
+.player-card{
+  width: min(95vw, 380px);
+  background: rgba(28,28,28,.95);
+  border-radius: var(--radius-outer);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Cover + Info */
+.song-info{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.art{
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 15px; /* sudut melengkung */
+}
+
+.meta{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+.device{ color:var(--muted); font-size:.8rem }
+.title{ font-size:1.2rem; font-weight:700 }
+.artist{ font-size:.9rem; color:var(--muted) }
+
+/* Lirik lagu */
+.lyrics{
+  font-size: .95rem;              /* Sedikit lebih besar biar jelas */
+  font-weight: 600;               /* Teks dibuat lebih tebal */
+  color: var(--text);             /* Warna putih (mengikuti tema) */
+  background: rgba(255,255,255,0.05); /* Latar transparan tipis */
+  padding: 14px;                  /* Ruang dalam kotak lirik */
+  border-radius: 12px;            /* Sudut melengkung */
+  line-height: 1.6;               /* Jarak antar baris */
+  text-align: center;             /* Teks di tengah */
+}
+
+/* Styling untuk paragraf di dalam lirik */
+.lyrics p{
+  margin: 0 0 10px;               /* Tambahkan jarak antar bait */
+}
+
+/* Hilangkan jarak di paragraf terakhir agar rapi */
+.lyrics p:last-child{
+  margin-bottom: 0;
+}
+
+/* Tombol kontrol */
+.controls{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+.icon-btn, .play-btn{
+  border:none;
+  cursor:pointer;
+  border-radius:12px;
+  padding:12px 16px;
+  font-size:1.2rem;
+  background:#3a3a3a; 
+  color:#fff;
+  transition: all .5s ease;
+}
+
+.icon-btn:hover, 
+.play-btn:hover {
+  scale: 1.1;
+}
+
+.play-btn{
+  background:#fff; 
+  color:#000;
+  font-weight:bold;
+  padding:14px 22px;
+  font-size:1.4rem;
+  transform: scale(1.1);
+}
+
+.progress{
+  display: flex;                  /* pakai flex biar lebih fleksibel */
+  align-items: center;
+  gap: 8px;
+}
+
+.progress input[type=range]{
+  flex: 1;                        /* slider isi semua ruang yang tersisa */
+}
+
+.volume{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.volume input[type=range]{
+  flex: 1;                        /* slider isi semua ruang sisa */
+}

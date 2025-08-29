@@ -1,0 +1,249 @@
+/* Warna utama */
+:root {
+  --biru-muda: #e0f7fa;   /* Variabel warna biru muda (dipakai untuk background) */
+  --putih: #ffffff;       /* Variabel warna putih */
+  --biru-tua: #0288d1;    /* Variabel warna biru tua (untuk judul, border, dsb) */
+  --abu: #555;            /* Variabel warna abu-abu (untuk teks) */
+}
+
+body {
+  margin: 0;                              /* Hilangkan margin default browser */
+  font-family: 'Segoe UI', sans-serif;    /* Gunakan font Segoe UI */
+  background-color: var(--putih);         /* Warna background putih */
+  color: var(--abu);                      /* Warna teks abu-abu */
+}
+
+.container {
+  max-width: 960px;       /* Lebar maksimum konten 960px */
+  margin: auto;           /* Konten ditengah secara horizontal */
+  padding: 20px;          /* Jarak isi konten dari pinggir */
+}
+
+header {
+  background-color: var(--biru-muda);  /* Background header biru muda */
+  text-align: center;                  /* Teks rata tengah */
+  padding: 50px 20px;                  /* Jarak dalam: atas-bawah 50px, kiri-kanan 20px */
+}
+
+header h1 {
+  margin: 0;                 /* Hilangkan margin default h1 */
+  color: var(--biru-tua);    /* Warna teks biru tua */
+  font-size: 2.5em;          /* Ukuran font besar (2,5 kali default) */
+}
+
+header p {
+  margin-top: 10px;          /* Jarak atas 10px dari elemen sebelumnya */
+  font-size: 1.2em;          /* Ukuran font sedikit lebih besar dari normal */
+}
+
+/* Sidebar */
+.side-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100vh;
+  background-color: #0288d1;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  color: #fff;
+  overflow: hidden;
+  border-radius: 0 8px 8px 0;
+  transition: width .75s ease, transform 0.3s ease;
+  z-index: 1100; /* lebih tinggi */
+}
+
+.side-bar:hover {
+  width: 200px;
+}
+
+/* List menu */
+.side-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.side-bar li {
+  padding: 10px;
+  border-bottom: 2px solid #026fa4;
+  border-radius: 5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.side-bar li:hover {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.side-bar .nav-link {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.side-bar .item-txt {
+  padding-left: .5rem;
+}
+
+/* Desktop: geser konten agar tidak tertutup sidebar */
+@media (min-width: 769px) {
+  body {
+    padding-left: 60px;  /* sesuai lebar sidebar default */
+    transition: padding-left 0.3s ease;
+  }
+
+  /* Saat sidebar diperluas (hover), konten ikut bergeser */
+  .side-bar:hover ~ body {
+    padding-left: 200px; /* lebar sidebar saat hover */
+  }
+}
+
+
+/* Hamburger */
+.hamburger {
+  display: none; /* default */
+  flex-direction: column;
+  gap: 5px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 1200; /* lebih tinggi dari sidebar */
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none; /* default hidden */
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .side-bar {
+    transform: translateX(-100%);
+    width: 200px;
+  }
+
+  .side-bar.active {
+    transform: translateX(0);
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hamburger.active {
+    display: none; /* Sembunyikan hamburger ketika sidebar aktif */
+  }
+
+  .overlay.active {
+    display: block;
+  }
+
+  .side-bar:hover {
+    width: 200px;
+  }
+}
+
+
+section h2 {
+  color: var(--biru-tua);                 /* Warna judul biru tua */
+  border-bottom: 2px solid var(--biru-tua); /* Garis bawah biru tua */
+  padding-bottom: 5px;                    /* Jarak antara teks dan garis */
+  margin-bottom: 15px;                    /* Jarak bawah ke elemen selanjutnya */
+}
+
+.project-card {
+  display: flex;              /* Gambar + teks sejajar */
+  align-items: center;        /* Tengah vertikal */
+  background-color: var(--biru-muda);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.project-image {
+  width: 40%;                 /* Gambar ambil 40% */
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.project-text {
+  flex: 1;                    /* Sisa ruang buat teks */
+}
+
+footer {
+  background-color: var(--biru-muda); /* Background footer biru muda */
+  text-align: center;                 /* Isi footer rata tengah */
+  padding: 20px 0;                    /* Atas-bawah 20px, kiri-kanan 0 */
+  margin-top: 40px;                   /* Jarak atas 40px dari elemen sebelumnya */
+}
+
+.typing {
+  color: #5A32E3;                     /* Warna teks ungu */
+  border-right: 2px solid #5A32E3;    /* Garis kedip di sebelah kanan teks */
+  padding-right: 5px;                 /* Jarak antara teks dan garis kedip */
+  white-space: nowrap;                /* Supaya teks tidak pindah ke bawah */
+  overflow: hidden;                   /* Sembunyikan teks yang kelebihan */
+  width: fit-content;                 /* Lebar elemen mengikuti isi */
+}
+
+.container-whitebox {
+  background-color: white;            /* Latar putih */
+  padding: 20px 30px;                 /* Jarak isi: atas-bawah 20px, kiri-kanan 30px */
+  border-radius: 30px;                /* Sudut kotak melengkung 30px */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Bayangan halus */
+  display: inline-block;              /* Ukuran menyesuaikan isi */
+  font-family: sans-serif;            /* Font default sans-serif */
+  font-size: 18px;                    /* Ukuran font 18px */
+  color: #5A32E3;                     /* Warna teks ungu */
+}
+
+/* Styling container */
+.container-button {
+  text-align: center; /* Biar tombol di tengah */
+  margin-top: 50px;   /* Jarak dari atas */
+}
+
+/* Styling button */
+.btn {
+  background-color: #0288d1;  /* Warna biru */
+  color: white;               /* Warna teks */
+  padding: 12px 24px;         /* Jarak dalam tombol */
+  border: none;               /* Hilangkan border */
+  border-radius: 8px;         /* Sudut membulat */
+  cursor: pointer;            /* Pointer saat hover */
+  transition: 0.3s;           /* Efek transisi halus */
+}
+
+/* Styling link di dalam button */
+.btn a {
+  text-decoration: none;  /* Hilangkan garis bawah */
+  color: inherit;         /* Ikut warna tombol */
+  font-weight: bold;      /* Tebalkan teks */
+}
+
+/* Efek hover */
+.btn:hover {
+  background-color: #026fa4; /* Warna lebih gelap saat hover */
+  transform: scale(1.05);   /* Sedikit membesar */
+}
